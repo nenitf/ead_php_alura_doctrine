@@ -21,13 +21,35 @@ class EntityManagerFactory
             [$rootDir . '/src'],
             true
         );
-        $connection = [
-            'driver' => 'pdo_pgsql',
-            'user' => 'postgres',
-            'password' => '123456',
-            'host' => 'localhost',
+
+        $connection = $this->conectaDeAcordoComENV();
+        $connection['application_name'] = 'ead_php_alura_doctrine';
+
+        return EntityManager::create($connection, $config);
+    }
+
+    private function conectaDeAcordoComENV(): array
+    {
+        try {
+        [
+            'driver' => $driver,
+            'user' => $user,
+            'password' => $password,
+            'host' => $host,
+            'dbname' => $dbname,
+        ] = ENV;
+
+        $drivers = [
+            'psql' => 'pdo_pgsql'
+        ];
+
+        return [
+            'driver' => $drivers[$driver],
+            'user' => $user,
+            'password' => $password,
+            'host' => $host,
             // 'port' => '',
-            'dbname' => 'ead_php_alura_doctrine',
+            'dbname' => $dbname,
             // 'charset' => '',
             // 'default_dbname' => '',
             // 'sslmode' => '',
@@ -35,8 +57,9 @@ class EntityManagerFactory
             // 'sslcert' => '',
             // 'sslkey' => '',
             // 'sslcrl' => '',
-            'application_name' => 'ead_php_alura_doctrine',
         ];
-        return EntityManager::create($connection, $config);
+        } catch (\Throwable $t){
+            throw new \Exception("Erro no parce de ENV");
+        }
     }
 }

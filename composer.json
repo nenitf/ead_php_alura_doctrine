@@ -3,6 +3,7 @@
         "doctrine/orm": "^2.8"
     },
     "autoload": {
+        "files": ["env.php"],
         "psr-4": {
             "Alura\\Doctrine\\": "src/"
         }
