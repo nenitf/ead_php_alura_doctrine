@@ -6,5 +6,8 @@
         "psr-4": {
             "Alura\\Doctrine\\": "src/"
         }
+    },
+    "scripts": {
+        "doctrine": "doctrine"
     }
 }
