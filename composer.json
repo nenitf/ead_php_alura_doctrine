@@ -1,6 +1,7 @@
 {
     "require": {
-        "doctrine/orm": "^2.8"
+        "doctrine/orm": "^2.8",
+        "doctrine/migrations": "^3.1"
     },
     "autoload": {
         "files": ["env.php"],
@@ -9,6 +10,7 @@
         }
     },
     "scripts": {
-        "doctrine": "doctrine"
+        "doctrine": "doctrine",
+        "doctrine:migrations": "doctrine-migrations"
     }
 }
