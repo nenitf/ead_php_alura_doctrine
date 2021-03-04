@@ -18,6 +18,15 @@ class Aluno
      * @Column(type="string")
      */
     private $nome;
+    /**
+     * @OneToMany(targetEntity="Telefone", mappedBy="Aluno")
+     */
+    private $telefones;
+
+    public function __construct()
+    {
+        $this->telefones = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -35,4 +44,15 @@ class Aluno
         return $this;
     }
 
+    public function addTelefone(Telefone $telefone)
+    {
+        $this->telefones->add($telefone);
+        $telefone->setAluno($this);
+        return $this;
+    }
+
+    public function getTelefones(): Collection
+    {
+        return $this->telefones;
+    }
 }
