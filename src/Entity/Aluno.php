@@ -31,6 +31,7 @@ class Aluno
 
     public function __construct()
     {
+        $this->telefones = new ArrayCollection();
         $this->alunos = new ArrayCollection();
         $this->cursos = new ArrayCollection();
     }
