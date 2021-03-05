@@ -2,10 +2,12 @@
 
 namespace Alura\Doctrine\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 /**
  * @Entity
  */
-
 class Aluno
 {
     /**
@@ -19,7 +21,7 @@ class Aluno
      */
     private $nome;
     /**
-     * @OneToMany(targetEntity="Telefone", mappedBy="Aluno")
+     * @OneToMany(targetEntity="Telefone", mappedBy="aluno", cascade={"remove", "persist"})
      */
     private $telefones;
 
@@ -48,6 +50,7 @@ class Aluno
     {
         $this->telefones->add($telefone);
         $telefone->setAluno($this);
+
         return $this;
     }
 

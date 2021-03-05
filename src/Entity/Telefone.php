@@ -3,7 +3,7 @@
 namespace Alura\Doctrine\Entity;
 
 /**
- *@Entity
+ * @Entity
  */
 class Telefone
 {
@@ -27,19 +27,16 @@ class Telefone
         return $this->id;
     }
 
-
     public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
     }
 
-
     public function getNumero(): string
     {
         return $this->numero;
     }
-
 
     public function setNumero(string $numero): self
     {
@@ -51,7 +48,6 @@ class Telefone
     {
         return $this->aluno;
     }
-
 
     public function setAluno(Aluno $aluno): self
     {

@@ -1,6 +1,6 @@
 <?php
 
-use Alura\Doctrine\Entity\Aluno;
+use Alura\Doctrine\Entity\{Aluno, Telefone};
 use Alura\Doctrine\Helper\EntityManagerFactory;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -13,7 +13,16 @@ $alunoRepository = $entityManager->getRepository(Aluno::class);
 $alunoList = $alunoRepository->findAll();
 
 foreach ($alunoList as $aluno) {
-    echo "ID: {$aluno->getId()}\nNome: {$aluno->getNome()}\n\n";
+    $telefones = $aluno
+        ->getTelefones()
+        ->map(function (Telefone $telefone) {
+            return $telefone->getNumero();
+        })
+        ->toArray();
+    echo "ID: {$aluno->getId()}\nNome: {$aluno->getNome()}\n";
+    echo "Telefones: " . implode(', ', $telefones);
+
+    echo "\n\n";
 }
 
 // $alunoComId2 = $alunoRepository->find(2);
