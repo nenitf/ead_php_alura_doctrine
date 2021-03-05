@@ -44,3 +44,36 @@ composer doctrine:migrations migrations:migrate
 - Browser com servidor embutido
     1. Levantar servidor pelo terminal com `php -S localhost:8001`
     2. Acessar em `localhost:8001/nomedoarquivo.php`
+
+## Migrations
+
+Comandos uteis
+
+### Gerar nova
+
+```sh
+composer doctrine:migrations migrations:diff
+```
+
+### Status
+
+```sh
+composer doctrine:migrations migrations:status
+```
+
+### Reverter
+
+```sh
+# rollback para anterior
+composer doctrine:migrations migrate prev
+# psql está com problemas qnt isso:
+# https://github.com/doctrine/migrations/issues/494
+# https://github.com/doctrine/dbal/issues/1188
+# https://github.com/doctrine/dbal/issues/1110
+# solução: deletar manualmente as versões que não quer mais e gerar novamente com:
+# 1) drop database:
+#   composer doctrine orm:schema-tool:drop -- --force
+# 2) Apagar arquivo da versão
+# 3) Apagar histórico da versão:
+#   delete from doctrine_migration_versions where version = 'Alura\Doctrine\Migrations\Version20210305010330';
+```

@@ -17,7 +17,7 @@ class Curso
      */
     private $id;
     /**
-     * @@Column(type="string"
+     * @Column(type="string")
      */
     private $nome;
 
