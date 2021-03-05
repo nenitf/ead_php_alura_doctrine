@@ -34,6 +34,8 @@ psql -U postgres -d ead_php_alura_doctrine
 > Caso queira outro sgb, banco, usuário, senha e etc veja o arquivo [env.ini](env.ini)
 4. Crie as tabelas que as entidades refletem
 ```sh
+composer doctrine orm:schema-tool:create
+# ou
 composer doctrine:migrations migrations:migrate 
 ```
 
